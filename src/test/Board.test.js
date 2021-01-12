@@ -6,8 +6,8 @@ import Square from "../components/Square"
 Enzyme.configure({ adapter: New Adapter() });
 
 describe("<Board />", () =>{
-    it("renders a board component", ()=>{
+    it("renders a <Board /> component", ()=>{
 
     })
-    it("renders a Board component with 9 <Square /> components")
+    it("renders a <Board /> component with 9 <Square /> components")
 })

@@ -1,22 +1,16 @@
 import "./App.css";
+import PlayerTurn from "./components/PlayerTurn";
+import WinnerDeclaration from "./components/WinnerDeclaration";
+import NewGame from "./components/NewGame";
+import Board from "./components/Board";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <PlayerTurn />
+      <WinnerDeclaration />
+      <NewGame />
+      <Board />
     </div>
   );
 }
