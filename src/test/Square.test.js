@@ -2,41 +2,41 @@ import React from "react";
 import Enzyme, { mount } from "enzyme";
 import Square from "../components/Square";
 import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
+import { SQUARE_CONTENTS } from "../constants";
 
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("<Square />", () => {
   it("render a blank <Square /> component", () => {
-    const imgSrc = "blank/img.png";
+    const imgSrc = SQUARE_CONTENTS.blank;
     const wrapper = mount(<Square src={imgSrc} />);
-    console.log(wrapper.debug());
     const props = wrapper.props();
-    expect(props.src).toBe("blank/img.png");
+    expect(props.src).toBe("blank.png");
   });
   it("render a <Square /> with an X", () => {
-    const imgSrc = "X/img.png";
+    const imgSrc = SQUARE_CONTENTS.X;
     const wrapper = mount(<Square src={imgSrc} />);
     const props = wrapper.props();
-    expect(props.src).toBe("X/img.png");
+    expect(props.src).toBe("X.png");
   });
   it("render a <Square /> with an O", () => {
-    const imgSrc = "O/img.png";
+    const imgSrc = SQUARE_CONTENTS.circle;
     const wrapper = mount(<Square src={imgSrc} />);
     const props = wrapper.props();
-    expect(props.src).toBe("O/img.png");
+    expect(props.src).toBe("O.png");
   });
   it("disables the square when the square is marked", () => {
-    const imgSrc = "blank/img.png";
+    const imgSrc = SQUARE_CONTENTS.X;
     const disabled = true;
     const wrapper = mount(<Square src={imgSrc} disabled={disabled} />);
     const props = wrapper.props();
     expect(props.disabled).toBe(true);
   });
-  it("disables the square from being clicked ", () => {
-    const imgSrc = "blank/img.png";
-    const disabled = false;
+  it("disables the square from being clicked", () => {
+    const imgSrc = SQUARE_CONTENTS.blank;
+    const disabled = true;
     const wrapper = mount(<Square src={imgSrc} disabled={disabled} />);
     const props = wrapper.props();
-    expect(props.disabled).toBe(false);
+    expect(props.disabled).toBe(true);
   });
 });
