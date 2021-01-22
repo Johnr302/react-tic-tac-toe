@@ -3,3 +3,8 @@ export const SQUARE_CONTENTS = {
   X: "X.png",
   blank: "blank.png",
 };
+
+export const PLAYER = {
+  X: "X",
+  O: "O",
+};
