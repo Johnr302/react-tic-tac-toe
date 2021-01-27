@@ -1,7 +1,7 @@
 export const SQUARE_CONTENTS = {
-  circle: "O.png",
+  O: "O.png",
   X: "X.png",
-  blank: "blank.png",
+  BLANK: "blank.png",
 };
 
 export const PLAYER = {
