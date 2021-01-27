@@ -5,6 +5,7 @@ export default function Square(props) {
   const [imgSrc, setImgSrc] = useState("");
   const [marked, setMarked] = useState("");
   const { currentPlayer } = props;
+  const disabled = marked !== "";
 
   const markSquare = () => {
     if (currentPlayer === PLAYER.X) {
@@ -27,5 +28,12 @@ export default function Square(props) {
     }
   }, [marked]);
 
-  return <img className="square" onClick={markSquare} src={imgSrc} alt="" />;
+  return (
+    <img
+      className="square"
+      onClick={disabled ? undefined : markSquare}
+      src={imgSrc}
+      alt=""
+    />
+  );
 }
