@@ -24,23 +24,21 @@ describe("<Square />", () => {
     const wrapper = mount(<Square currentPlayer={PLAYER.X} />);
     wrapper.find("img").simulate("click");
     const props = wrapper.find("img").props();
-    console.log(props);
-    expect(props.src).toBe("X.png");
+    expect(props.src).toBe(SQUARE_CONTENTS.X);
+  });
+  it("render a <Square /> with an O only when clicked on and Player's turn is O", () => {
+    const wrapper = mount(<Square currentPlayer={PLAYER.O} />);
+    wrapper.find("img").simulate("click");
+    const props = wrapper.find("img").props();
+    expect(props.src).toBe(SQUARE_CONTENTS.O);
+  });
+  it("disables clicking on a square when the square is already marked an X or O", () => {
+    const wrapper = mount(<Square currentPlayer={PLAYER.O} />);
+    wrapper.find("img").simulate("click");
+    const props = wrapper.find("img").props();
+    expect(props.onClick).toBe(undefined);
   });
   /*
-  it("render a <Square /> with an O", () => {
-    const imgSrc = SQUARE_CONTENTS.circle;
-    const wrapper = mount(<Square src={imgSrc} />);
-    const props = wrapper.props();
-    expect(props.src).toBe("O.png");
-  });
-  it("disables the square when the square is marked", () => {
-    const imgSrc = SQUARE_CONTENTS.X;
-    const disabled = true;
-    const wrapper = mount(<Square src={imgSrc} disabled={disabled} />);
-    const props = wrapper.props();
-    expect(props.disabled).toBe(true);
-  });
   it("disables the square from being clicked", () => {
     const imgSrc = SQUARE_CONTENTS.blank;
     const disabled = true;
