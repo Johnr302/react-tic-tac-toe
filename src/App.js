@@ -8,12 +8,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   const [player, setPlayer] = useState("X");
+  const [gameOver, setGameOver] = useState(false);
   return (
     <div className="App">
       <PlayerTurn player={player} />
-      <WinnerDeclaration player={player} />
+      <WinnerDeclaration player={player} gameOver={gameOver} />
       <NewGame />
-      <Board />
+      <Board gameOver={gameOver} />
     </div>
   );
 }

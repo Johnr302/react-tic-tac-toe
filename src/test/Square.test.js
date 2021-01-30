@@ -21,13 +21,13 @@ describe("<Square />", () => {
   */
 
   it("render a <Square /> with an X only when clicked on and Player's turn is X", () => {
-    const wrapper = mount(<Square currentPlayer={PLAYER.X} />);
+    const wrapper = mount(<Square currentPlayer={PLAYER.X} gameOver={false} />);
     wrapper.find("img").simulate("click");
     const props = wrapper.find("img").props();
     expect(props.src).toBe(SQUARE_CONTENTS.X);
   });
   it("render a <Square /> with an O only when clicked on and Player's turn is O", () => {
-    const wrapper = mount(<Square currentPlayer={PLAYER.O} />);
+    const wrapper = mount(<Square currentPlayer={PLAYER.O} gameOver={false} />);
     wrapper.find("img").simulate("click");
     const props = wrapper.find("img").props();
     expect(props.src).toBe(SQUARE_CONTENTS.O);
@@ -38,13 +38,9 @@ describe("<Square />", () => {
     const props = wrapper.find("img").props();
     expect(props.onClick).toBe(undefined);
   });
-  /*
-  it("disables the square from being clicked", () => {
-    const imgSrc = SQUARE_CONTENTS.blank;
-    const disabled = true;
-    const wrapper = mount(<Square src={imgSrc} disabled={disabled} />);
-    const props = wrapper.props();
-    expect(props.disabled).toBe(true);
+  it("disables clicking on a square when the game has been won", () => {
+    const wrapper = mount(<Square currentPlayer={PLAYER.O} gameOver={true} />);
+    const props = wrapper.find("img").props();
+    expect(props.onClick).toBe(undefined);
   });
-  */
 });
