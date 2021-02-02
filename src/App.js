@@ -12,8 +12,8 @@ function App() {
   return (
     <div className="App">
       <PlayerTurn player={player} />
-      <WinnerDeclaration player={player} gameOver={gameOver} />
-      <NewGame />
+      {gameOver ? <WinnerDeclaration player={player} /> : null}
+      {gameOver ? <NewGame /> : null}
       <Board gameOver={gameOver} />
     </div>
   );

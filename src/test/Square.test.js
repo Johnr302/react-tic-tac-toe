@@ -13,13 +13,6 @@ describe("<Square />", () => {
     expect(img.src).toBe("blank.png");
   });
 
-  /*
-[], [], []
-[], [], []
-[], [], []
-
-  */
-
   it("render a <Square /> with an X only when clicked on and Player's turn is X", () => {
     const wrapper = mount(<Square currentPlayer={PLAYER.X} gameOver={false} />);
     wrapper.find("img").simulate("click");
