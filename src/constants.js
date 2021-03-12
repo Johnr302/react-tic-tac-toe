@@ -8,3 +8,9 @@ export const PLAYER = {
   X: "X",
   O: "O",
 };
+
+export const RESULT = {
+  X: "X",
+  O: "O",
+  CATS: "CAT'S",
+};

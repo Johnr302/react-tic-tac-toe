@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState } from "react";
 import PlayerTurn from "./components/PlayerTurn";
-import WinnerDeclaration from "./components/WinnerDeclaration";
+import EndGameDeclaration from "./components/EndGameDeclaration";
 import NewGame from "./components/NewGame";
 import Board from "./components/Board";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -12,7 +12,7 @@ function App() {
   return (
     <div className="App">
       <PlayerTurn player={player} />
-      {gameOver ? <WinnerDeclaration player={player} /> : null}
+      {gameOver ? <EndGameDeclaration player={player} /> : null}
       {gameOver ? <NewGame /> : null}
       <Board gameOver={gameOver} />
     </div>
