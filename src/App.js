@@ -12,8 +12,11 @@ function App() {
   return (
     <div className="App">
       <PlayerTurn player={player} />
-      {gameOver ? <EndGameDeclaration player={player} /> : null}
-      {gameOver ? <NewGame /> : null}
+      {gameOver ? (
+        <div>
+          <EndGameDeclaration player={player} /> <NewGame />{" "}
+        </div>
+      ) : null}
       <Board gameOver={gameOver} />
     </div>
   );
