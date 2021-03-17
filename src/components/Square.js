@@ -4,7 +4,7 @@ import { SQUARE_CONTENTS, PLAYER } from "../constants";
 export default function Square(props) {
   const [imgSrc, setImgSrc] = useState("");
   const [marked, setMarked] = useState("");
-  const { currentPlayer, gameOver } = props;
+  const { currentPlayer, gameOver = false } = props;
   const disabled = marked !== "" || gameOver === true;
 
   const markSquare = () => {

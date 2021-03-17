@@ -14,13 +14,13 @@ describe("<Square />", () => {
   });
 
   it("render a <Square /> with an X only when clicked on and Player's turn is X", () => {
-    const wrapper = mount(<Square currentPlayer={PLAYER.X} gameOver={false} />);
+    const wrapper = mount(<Square currentPlayer={PLAYER.X} />);
     wrapper.find("img").simulate("click");
     const props = wrapper.find("img").props();
     expect(props.src).toBe(SQUARE_CONTENTS.X);
   });
   it("render a <Square /> with an O only when clicked on and Player's turn is O", () => {
-    const wrapper = mount(<Square currentPlayer={PLAYER.O} gameOver={false} />);
+    const wrapper = mount(<Square currentPlayer={PLAYER.O} />);
     wrapper.find("img").simulate("click");
     const props = wrapper.find("img").props();
     expect(props.src).toBe(SQUARE_CONTENTS.O);
