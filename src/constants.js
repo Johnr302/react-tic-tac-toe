@@ -14,3 +14,15 @@ export const RESULT = {
   O: "O",
   CATS: "CAT'S",
 };
+
+export const BOARD_STATE = [
+  { marked: "" },
+  { marked: "" },
+  { marked: "" },
+  { marked: "" },
+  { marked: "" },
+  { marked: "" },
+  { marked: "" },
+  { marked: "" },
+  { marked: "" },
+];
