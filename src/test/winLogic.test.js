@@ -46,22 +46,16 @@ describe("checks win logic", () => {
 
   describe("checks for vertical wins", () => {
     it("checks for first column win", () => {
+      let array4 = JSON.parse(JSON.stringify(BOARD_STATE));
+      array4[0].marked = "X";
+      array4[3].marked = "X";
+      array4[6].marked = "X";
       //     array4 = [
       //     { marked: "X" },{ marked: "" },{ marked: "" },
       //     { marked: "X" },{ marked: "" },{ marked: "" },
       //     { marked: "X" },{ marked: "" },{ marked: "" },
       //   ];
-      let array4 = [
-        { marked: "X" },
-        { marked: "" },
-        { marked: "" },
-        { marked: "X" },
-        { marked: "" },
-        { marked: "" },
-        { marked: "X" },
-        { marked: "" },
-        { marked: "" },
-      ];
+
       expect(winLogic(array4, PLAYER.X)).toBe(true);
       expect(winLogic(array4, PLAYER.O)).toBe(false);
     });
@@ -71,17 +65,10 @@ describe("checks win logic", () => {
       //     { marked: "" },{ marked: "X" },{ marked: "" },
       //     { marked: "" },{ marked: "X" },{ marked: "" },
       //   ];
-      let array5 = [
-        { marked: "" },
-        { marked: "X" },
-        { marked: "" },
-        { marked: "" },
-        { marked: "X" },
-        { marked: "" },
-        { marked: "" },
-        { marked: "X" },
-        { marked: "" },
-      ];
+      let array5 = JSON.parse(JSON.stringify(BOARD_STATE));
+      array5[1].marked = "X";
+      array5[4].marked = "X";
+      array5[7].marked = "X";
       expect(winLogic(array5, PLAYER.X)).toBe(true);
       expect(winLogic(array5, PLAYER.O)).toBe(false);
     });
@@ -91,17 +78,10 @@ describe("checks win logic", () => {
       //     { marked: "" },{ marked: "" },{ marked: "X" },
       //     { marked: "" },{ marked: "" },{ marked: "X" },
       //   ];
-      let array6 = [
-        { marked: "" },
-        { marked: "" },
-        { marked: "X" },
-        { marked: "" },
-        { marked: "" },
-        { marked: "X" },
-        { marked: "" },
-        { marked: "" },
-        { marked: "X" },
-      ];
+      let array6 = JSON.parse(JSON.stringify(BOARD_STATE));
+      array6[2].marked = "X";
+      array6[5].marked = "X";
+      array6[8].marked = "X";
       expect(winLogic(array6, PLAYER.X)).toBe(true);
       expect(winLogic(array6, PLAYER.O)).toBe(false);
     });
@@ -113,17 +93,10 @@ describe("checks win logic", () => {
       //     { marked: "" }, { marked: "X" },{ marked: "" },
       //     { marked: "" }, { marked: "" }, { marked: "X" },
       //   ];
-      let array7 = [
-        { marked: "X" },
-        { marked: "" },
-        { marked: "" },
-        { marked: "" },
-        { marked: "X" },
-        { marked: "" },
-        { marked: "" },
-        { marked: "" },
-        { marked: "X" },
-      ];
+      let array7 = JSON.parse(JSON.stringify(BOARD_STATE));
+      array7[0].marked = "X";
+      array7[4].marked = "X";
+      array7[8].marked = "X";
       expect(winLogic(array7, PLAYER.X)).toBe(true);
       expect(winLogic(array7, PLAYER.O)).toBe(false);
     });
@@ -133,17 +106,11 @@ describe("checks win logic", () => {
       //     { marked: "" }, { marked: "X" },{ marked: "" },
       //     { marked: "X" },{ marked: "" }, { marked: "" },
       //   ];
-      let array8 = [
-        { marked: "" },
-        { marked: "" },
-        { marked: "X" },
-        { marked: "" },
-        { marked: "X" },
-        { marked: "" },
-        { marked: "X" },
-        { marked: "" },
-        { marked: "" },
-      ];
+      let array8 = JSON.parse(JSON.stringify(BOARD_STATE));
+      array8[2].marked = "X";
+      array8[4].marked = "X";
+      array8[6].marked = "X";
+
       expect(winLogic(array8, PLAYER.X)).toBe(true);
       expect(winLogic(array8, PLAYER.O)).toBe(false);
     });

@@ -4,6 +4,8 @@ import Adapter from "@wojtekmaj/enzyme-adapter-react-17";
 import App from "../App";
 import PlayerTurn from "../components/PlayerTurn";
 import Board from "../components/Board";
+import Square from "../components/Square";
+import { PLAYER } from "../constants";
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -16,10 +18,27 @@ describe("App", () => {
     expect(wrapper.find(PlayerTurn)).toHaveLength(1);
     expect(wrapper.find(Board)).toHaveLength(1);
   });
+  it("can determine the current player is X at the start of the game", () => {
+    const wrapper = shallow(<App />);
+    const playerTurn = wrapper.find(PlayerTurn);
+    const props = playerTurn.props();
+    expect(props.player).toBe(PLAYER.X);
+  });
+  it("can determine the current player alternates after each click", () => {
+    const wrapper = mount(<App />);
+    const square = wrapper.find(Square);
+    square.at(0).simulate("click");
+    let playerTurn = wrapper.find(PlayerTurn);
+    let props = playerTurn.props();
+    expect(props.player).toBe(PLAYER.O);
+    square.at(1).simulate("click");
+    playerTurn = wrapper.find(PlayerTurn);
+    props = playerTurn.props();
+    expect(props.player).toBe(PLAYER.X);
+  });
   it("can determine X as winner", () => {});
   it("can determine a tie", () => {});
   it("can determine O as winner", () => {});
-  it("can determine who's turn it is", () => {});
   it("can determine when the game is over", () => {});
   it("can start a new game", () => {});
 });
