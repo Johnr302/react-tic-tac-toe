@@ -5,10 +5,21 @@ import EndGameDeclaration from "./components/EndGameDeclaration";
 import NewGame from "./components/NewGame";
 import Board from "./components/Board";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { PLAYER } from "./constants";
 
 function App() {
   const [player, setPlayer] = useState("X");
   const [gameOver, setGameOver] = useState(false);
+
+  const setPlayerClickHandler = () => {
+    setPlayer((currentPlayer) => {
+      if (currentPlayer === PLAYER.X) {
+        return PLAYER.O;
+      }
+      return PLAYER.X;
+    });
+  };
+
   return (
     <div className="App">
       <PlayerTurn player={player} />
@@ -17,7 +28,10 @@ function App() {
           <EndGameDeclaration player={player} /> <NewGame />{" "}
         </div>
       ) : null}
-      <Board gameOver={gameOver} />
+      <Board
+        gameOver={gameOver}
+        setPlayerClickHandler={setPlayerClickHandler}
+      />
     </div>
   );
 }
