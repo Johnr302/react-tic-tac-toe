@@ -1,15 +1,32 @@
 import "./App.css";
 import React, { useState } from "react";
-import PlayerTurn from "./components/PlayerTurn";
-import EndGameDeclaration from "./components/EndGameDeclaration";
-import NewGame from "./components/NewGame";
-import Board from "./components/Board";
+import {
+  PlayerTurn,
+  EndGameDeclaration,
+  NewGame,
+  Board,
+  winLogic,
+} from "./exporter";
+import { PLAYER, BOARD_STATE } from "./constants";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { PLAYER } from "./constants";
 
 function App() {
   const [player, setPlayer] = useState("X");
   const [gameOver, setGameOver] = useState(false);
+  const [result, setResult] = useState("");
+  const [board, setBoard] = useState(BOARD_STATE);
+
+  const updateBoard = (event, key, player) => {
+    board.map((board) => {
+      if (board.key === key) {
+        return {
+          ...board,
+          marked: { player },
+        };
+      }
+      return board;
+    });
+  };
 
   const setPlayerClickHandler = () => {
     setPlayer((currentPlayer) => {
@@ -25,12 +42,13 @@ function App() {
       <PlayerTurn player={player} />
       {gameOver ? (
         <div>
-          <EndGameDeclaration player={player} /> <NewGame />{" "}
+          <EndGameDeclaration result={result} /> <NewGame />{" "}
         </div>
       ) : null}
       <Board
         gameOver={gameOver}
         setPlayerClickHandler={setPlayerClickHandler}
+        board={board}
       />
     </div>
   );

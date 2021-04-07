@@ -5,7 +5,10 @@ import App from "../App";
 import PlayerTurn from "../components/PlayerTurn";
 import Board from "../components/Board";
 import Square from "../components/Square";
+import EndGameDeclaration from "../components/EndGameDeclaration";
 import { PLAYER } from "../constants";
+
+//To do create components index for cleaner import
 
 Enzyme.configure({ adapter: new Adapter() });
 
@@ -36,7 +39,19 @@ describe("App", () => {
     props = playerTurn.props();
     expect(props.player).toBe(PLAYER.X);
   });
-  it("can determine X as winner", () => {});
+  it("can determine X as winner", () => {
+    const wrapper = mount(<App />);
+    const square = wrapper.find(Square);
+    square.at(0).simulate("click"); //X
+    expect(wrapper.find(EndGameDeclaration)).toHaveLength(0);
+
+    square.at(3).simulate("click"); //O
+    square.at(1).simulate("click"); //X
+    square.at(5).simulate("click"); //O
+    square.at(2).simulate("click"); //X
+    const endGame = wrapper.find(EndGameDeclaration);
+    expect(endGame.text()).toBe("Player X Won!");
+  });
   it("can determine a tie", () => {});
   it("can determine O as winner", () => {});
   it("can determine when the game is over", () => {});

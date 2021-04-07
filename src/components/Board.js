@@ -4,7 +4,7 @@ import Square from "./Square";
 export default function Board(props) {
   const { setPlayerClickHandler, gameOver } = props;
   let result = [];
-  for (let i = 1; i <= 9; i++) {
+  for (let i = 0; i <= 8; i++) {
     result.push(
       <Square
         key={i}
