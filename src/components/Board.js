@@ -2,13 +2,13 @@ import React from "react";
 import Square from "./Square";
 
 export default function Board(props) {
-  const { setPlayerClickHandler, gameOver } = props;
+  const { setPlayerClickHandler, gameOver, currentPlayer } = props;
   let result = [];
   for (let i = 0; i <= 8; i++) {
     result.push(
       <Square
         key={i}
-        currentPlayer={"X"}
+        currentPlayer={currentPlayer}
         marked={""}
         setPlayerClickHandler={setPlayerClickHandler}
         gameOver={gameOver}

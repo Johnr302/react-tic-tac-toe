@@ -49,6 +49,7 @@ function App() {
         gameOver={gameOver}
         setPlayerClickHandler={setPlayerClickHandler}
         board={board}
+        currentPlayer={player}
       />
     </div>
   );
