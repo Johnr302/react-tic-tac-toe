@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   PlayerTurn,
   EndGameDeclaration,
@@ -16,17 +16,22 @@ function App() {
   const [result, setResult] = useState("");
   const [board, setBoard] = useState(BOARD_STATE);
 
-  const updateBoard = (event, key, player) => {
-    board.map((board) => {
-      if (board.key === key) {
-        return {
-          ...board,
-          marked: { player },
-        };
-      }
-      return board;
-    });
-  };
+  // const updateBoard = (key, player) => {
+  //   board.map((board) => {
+  //     if (board.key === key) {
+  //       return {
+  //         ...board,
+  //         marked: { player },
+  //       };
+  //     }
+  //     return board;
+  //   });
+  // };
+
+  // useEffect(() => {
+  //   let key = 0;
+  //   setBoard(updateBoard(key, player));
+  // }, []);
 
   const setPlayerClickHandler = () => {
     setPlayer((currentPlayer) => {
