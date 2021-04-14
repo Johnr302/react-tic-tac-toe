@@ -1,3 +1,5 @@
+import { PLAYER } from "../constants";
+
 export default function winLogic(squareArray, currentPlayer) {
   let win = false;
   if (

@@ -11,7 +11,7 @@ export default function Board(props) {
             key={index}
             id={board.id}
             currentPlayer={currentPlayer}
-            marked={""}
+            marked={board.marked}
             setPlayerClickHandler={setPlayerClickHandler}
             gameOver={gameOver}
           />

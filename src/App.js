@@ -11,35 +11,49 @@ import { PLAYER, BOARD_STATE } from "./constants";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
-  const [player, setPlayer] = useState("X");
-  const [gameOver, setGameOver] = useState(false);
-  const [result, setResult] = useState("");
   const [board, setBoard] = useState(BOARD_STATE);
+  const [gameOver, setGameOver] = useState(false);
+  const [player, setPlayer] = useState(PLAYER.X);
+  const [result, setResult] = useState("");
 
-  // const updateBoard = (key, player) => {
-  //   board.map((board) => {
-  //     if (board.key === key) {
-  //       return {
-  //         ...board,
-  //         marked: { player },
-  //       };
-  //     }
-  //     return board;
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   let key = 0;
-  //   setBoard(updateBoard(key, player));
-  // }, []);
-
-  const setPlayerClickHandler = () => {
-    setPlayer((currentPlayer) => {
-      if (currentPlayer === PLAYER.X) {
-        return PLAYER.O;
-      }
-      return PLAYER.X;
+  const updateBoard = (id, player) => {
+    setBoard((prevBoard) => {
+      return prevBoard.map((board) => {
+        if (board.id === id) {
+          return {
+            ...board,
+            marked: player,
+          };
+        }
+        return board;
+      });
     });
+  };
+
+  const isBoardEmpty = (board) => {
+    const markedEmptyString = (currentValue) => currentValue.marked === "";
+    return board.every(markedEmptyString);
+  };
+
+  useEffect(() => {
+    const isWinner = winLogic(board, player);
+    if (isWinner) {
+      setGameOver(true);
+      setResult(player);
+    } else {
+      if (!isBoardEmpty(board)) {
+        setPlayer((currentPlayer) => {
+          if (currentPlayer === PLAYER.X) {
+            return PLAYER.O;
+          }
+          return PLAYER.X;
+        });
+      }
+    }
+  }, [board]);
+
+  const setPlayerClickHandler = (id) => {
+    updateBoard(id, player);
   };
 
   return (
