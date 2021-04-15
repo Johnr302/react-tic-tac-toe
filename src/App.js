@@ -7,7 +7,7 @@ import {
   Board,
   winLogic,
 } from "./exporter";
-import { PLAYER, BOARD_STATE } from "./constants";
+import { PLAYER, BOARD_STATE, RESULT } from "./constants";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
@@ -15,6 +15,11 @@ function App() {
   const [gameOver, setGameOver] = useState(false);
   const [player, setPlayer] = useState(PLAYER.X);
   const [result, setResult] = useState("");
+
+  const newGameClickHandler = () => {
+    setBoard(BOARD_STATE);
+    setGameOver(false);
+  };
 
   const updateBoard = (id, player) => {
     setBoard((prevBoard) => {
@@ -35,11 +40,19 @@ function App() {
     return board.every(markedEmptyString);
   };
 
+  const isBoardFull = (board) => {
+    const marked = (currentValue) => currentValue.marked !== "";
+    return board.every(marked);
+  };
+
   useEffect(() => {
     const isWinner = winLogic(board, player);
     if (isWinner) {
       setGameOver(true);
       setResult(player);
+    } else if (isBoardFull(board)) {
+      setGameOver(true);
+      setResult(RESULT.CATS);
     } else {
       if (!isBoardEmpty(board)) {
         setPlayer((currentPlayer) => {
@@ -61,7 +74,8 @@ function App() {
       <PlayerTurn player={player} />
       {gameOver ? (
         <div>
-          <EndGameDeclaration result={result} /> <NewGame />{" "}
+          <EndGameDeclaration result={result} />{" "}
+          <NewGame newGameClickHandler={newGameClickHandler} />{" "}
         </div>
       ) : null}
       <Board
