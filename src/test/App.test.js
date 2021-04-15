@@ -15,11 +15,6 @@ import { PLAYER } from "../constants";
 
 Enzyme.configure({ adapter: new Adapter() });
 
-// const [gameWinner, setGameWinner]=useState('')
-// setGameWinner(winGameligic())
-
-const xit = () => {};
-
 describe("App", () => {
   it("Renders an <App /> with 2 components: <PlayerTurn /> , <Board />", () => {
     const wrapper = shallow(<App />);
@@ -63,7 +58,7 @@ describe("App", () => {
     expect(endGame.text()).toBe("Player X Won!");
   });
 
-  xit("can determine O as winner", () => {
+  it("can determine O as winner", () => {
     const wrapper = mount(<App />);
     const square = wrapper.find(Square);
     square.at(3).simulate("click"); //X
@@ -76,7 +71,7 @@ describe("App", () => {
     const endGame = wrapper.find(EndGameDeclaration);
     expect(endGame.text()).toBe("Player O Won!");
   });
-  xit("can determine a tie", () => {
+  it("can determine a tie", () => {
     const wrapper = mount(<App />);
     const square = wrapper.find(Square);
     square.at(0).simulate("click"); //X
