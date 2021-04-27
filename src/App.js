@@ -19,6 +19,7 @@ function App() {
   const newGameClickHandler = () => {
     setBoard(BOARD_STATE);
     setGameOver(false);
+    setPlayer(PLAYER.X);
   };
 
   const updateBoard = (id, player) => {

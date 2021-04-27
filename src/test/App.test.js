@@ -11,8 +11,6 @@ import {
 } from "../exporter";
 import { PLAYER } from "../constants";
 
-//To do create components index for cleaner import
-
 Enzyme.configure({ adapter: new Adapter() });
 
 describe("App", () => {
@@ -52,9 +50,8 @@ describe("App", () => {
     square.at(1).simulate("click"); //X
     square.at(5).simulate("click"); //O
     square.at(2).simulate("click"); //X
-    // console.log(wrapper.debug());
     const endGame = wrapper.find(EndGameDeclaration);
-    // console.log(endGame.debug());
+    expect(endGame).toHaveLength(1);
     expect(endGame.text()).toBe("Player X Won!");
   });
 
@@ -69,6 +66,7 @@ describe("App", () => {
     square.at(6).simulate("click"); //X
     square.at(2).simulate("click"); //0
     const endGame = wrapper.find(EndGameDeclaration);
+    expect(endGame).toHaveLength(1);
     expect(endGame.text()).toBe("Player O Won!");
   });
   it("can determine a tie", () => {
@@ -85,11 +83,10 @@ describe("App", () => {
     square.at(8).simulate("click"); //0
     square.at(7).simulate("click"); //X
     const endGame = wrapper.find(EndGameDeclaration);
+    expect(endGame).toHaveLength(1);
     expect(endGame.text()).toBe("Cat's Game!");
   });
-  it("can determine when the game is over", () => {
-    // is this test needed with the test above?
-  });
+
   it("can start a new game", () => {
     const wrapper = mount(<App />);
     const square = wrapper.find(Square);
@@ -101,8 +98,12 @@ describe("App", () => {
     square.at(6).simulate("click"); //X
     square.at(2).simulate("click"); //0
     const endGame = wrapper.find(EndGameDeclaration);
+    expect(endGame).toHaveLength(1);
     expect(endGame.text()).toBe("Player O Won!");
-    const newGame = wrapper.find(NewGame);
+    let newGame = wrapper.find(NewGame);
+    expect(newGame).toHaveLength(1);
     newGame.find("Button").simulate("click");
+    newGame = wrapper.find(NewGame);
+    expect(newGame).toHaveLength(0);
   });
 });
