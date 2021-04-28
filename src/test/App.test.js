@@ -89,21 +89,42 @@ describe("App", () => {
 
   it("can start a new game", () => {
     const wrapper = mount(<App />);
-    const square = wrapper.find(Square);
-    square.at(3).simulate("click"); //X
+    const squares = wrapper.find(Square);
+    squares.at(3).simulate("click"); //X
     expect(wrapper.find(EndGameDeclaration)).toHaveLength(0);
-    square.at(0).simulate("click"); //O
-    square.at(5).simulate("click"); //X
-    square.at(1).simulate("click"); //O
-    square.at(6).simulate("click"); //X
-    square.at(2).simulate("click"); //0
+    squares.at(0).simulate("click"); //O
+    squares.at(5).simulate("click"); //X
+    squares.at(1).simulate("click"); //O
+    squares.at(6).simulate("click"); //X
+    squares.at(2).simulate("click"); //0
     const endGame = wrapper.find(EndGameDeclaration);
     expect(endGame).toHaveLength(1);
     expect(endGame.text()).toBe("Player O Won!");
+
     let newGame = wrapper.find(NewGame);
     expect(newGame).toHaveLength(1);
+
     newGame.find("Button").simulate("click");
     newGame = wrapper.find(NewGame);
     expect(newGame).toHaveLength(0);
+
+    const playerTurn = wrapper.find(PlayerTurn);
+    const props = playerTurn.props();
+    expect(props.player).toBe(PLAYER.X);
+
+    const isBoardEmpty = (squares) => {
+      let markedEmpty = true;
+
+      const notMarked = (currentValue) => {
+        let props = currentValue.props();
+        if (props.marked !== "") {
+          markedEmpty = false;
+        }
+      };
+
+      squares.forEach(notMarked);
+      return markedEmpty;
+    };
+    expect(isBoardEmpty(squares)).toBe(true);
   });
 });
