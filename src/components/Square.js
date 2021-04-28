@@ -3,21 +3,16 @@ import { SQUARE_CONTENTS, PLAYER } from "../constants";
 
 export default function Square(props) {
   const [imgSrc, setImgSrc] = useState("");
-  const [marked, setMarked] = useState("");
   const {
-    currentPlayer,
+    marked,
+    id,
     gameOver = false,
     setPlayerClickHandler = () => {},
   } = props;
   const disabled = marked !== "" || gameOver === true;
 
-  const markSquare = () => {
-    if (currentPlayer === PLAYER.X) {
-      setMarked(PLAYER.X);
-    } else if (currentPlayer === PLAYER.O) {
-      setMarked(PLAYER.O);
-    }
-    setPlayerClickHandler();
+  const markSquare = (event, id) => {
+    setPlayerClickHandler(id);
   };
 
   useEffect(() => {
@@ -36,7 +31,7 @@ export default function Square(props) {
   return (
     <img
       className="square"
-      onClick={disabled ? undefined : markSquare}
+      onClick={disabled ? undefined : (event) => markSquare(event, id)}
       src={imgSrc}
       alt=""
     />
