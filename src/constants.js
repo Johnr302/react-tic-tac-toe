@@ -1,11 +1,3 @@
-export const SQUARE_CONTENTS = {
-  O:
-    "https://image.shutterstock.com/image-illustration/o-red-alphabet-word-on-600w-425518684.jpg",
-  X:
-    "https://image.shutterstock.com/image-illustration/glowing-letter-x-dark-space-600w-1241686336.jpg",
-  BLANK: "blank.png",
-};
-
 export const PLAYER = {
   X: "X",
   O: "O",
