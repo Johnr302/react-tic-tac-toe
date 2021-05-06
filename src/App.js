@@ -72,7 +72,7 @@ function App() {
 
   return (
     <div className="App">
-      <PlayerTurn player={player} />
+      {!gameOver ? <PlayerTurn player={player} /> : null}
       {gameOver ? (
         <div>
           <EndGameDeclaration result={result} />{" "}

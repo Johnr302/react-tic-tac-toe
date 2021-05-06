@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { SQUARE_CONTENTS, PLAYER } from "../constants";
 
 export default function Square(props) {
-  const [imgSrc, setImgSrc] = useState("");
+  const [squareContent, setSquareContent] = useState("");
   const {
     marked,
     id,
@@ -18,22 +18,22 @@ export default function Square(props) {
   useEffect(() => {
     switch (marked) {
       case "X":
-        setImgSrc(SQUARE_CONTENTS.X);
+        setSquareContent(PLAYER.X);
         break;
       case "O":
-        setImgSrc(SQUARE_CONTENTS.O);
+        setSquareContent(PLAYER.O);
         break;
       default:
-        setImgSrc(SQUARE_CONTENTS.BLANK);
+        setSquareContent("");
     }
   }, [marked]);
 
   return (
-    <img
+    <div
       className="square"
       onClick={disabled ? undefined : (event) => markSquare(event, id)}
-      src={imgSrc}
-      alt=""
-    />
+    >
+      {squareContent}
+    </div>
   );
 }

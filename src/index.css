@@ -18,9 +18,13 @@ h1,
 }
 
 .square {
+  display: flex;
   height: 100px;
   width: 100px;
   border: 1px solid;
+  justify-content: center;
+  align-items: center;
+  font-size: 75px;
 }
 
 .board {
